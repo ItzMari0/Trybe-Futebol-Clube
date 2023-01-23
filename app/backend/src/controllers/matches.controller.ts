@@ -14,6 +14,11 @@ const getMatches = async (req: Request, res: Response) => {
 
 const createMatch = async (req: Request, res: Response) => {
   const saveMatch = req.body;
+  const { homeTeamId, awayTeamId } = saveMatch;
+  if (homeTeamId === awayTeamId) {
+    return res.status(422)
+      .json({ message: 'It is not possible to create a match with two equal teams' });
+  }
   const result = await matchesService.createMatch(saveMatch);
   res.status(201).json(result);
 };
