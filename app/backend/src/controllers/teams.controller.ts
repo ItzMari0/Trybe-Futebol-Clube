@@ -1,13 +1,18 @@
 import { Request, Response } from 'express';
-import teamsService, { findTeam } from '../services/teams.service';
+import teamsService from '../services/teams.service';
 
-export default async (_req: Request, res: Response) => {
-  const result = await teamsService();
+const getTeams = async (_req: Request, res: Response) => {
+  const result = await teamsService.getTeams();
   return res.status(200).json(result);
 };
 
-export const teamFind = async (req: Request, res: Response) => {
+const findTeam = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await findTeam(id);
+  const result = await teamsService.findTeam(id);
   return res.status(200).json(result);
+};
+
+export default {
+  getTeams,
+  findTeam,
 };

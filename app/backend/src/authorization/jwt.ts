@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-// import IToken from '../interfaces/IToken';
+import IToken from '../interfaces/IToken';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
@@ -9,14 +9,15 @@ const tokenGenerator = (id: number, email: string) => jwt
     expiresIn: '1d',
   });
 
-// const tokenVerify = (authorization: string) => {
-//   try {
-//     const payload = jwt.verify(authorization, secret);
-//     return payload as IToken;
-//   } catch (error) {
-//     return { email: 'Expired or invalid token' };
-//   }
-// };
+const tokenVerify = (authorization: string) => {
+  try {
+    const payload = jwt.verify(authorization, secret);
+    console.log(payload);
+    return payload as IToken;
+  } catch (error) {
+    return { email: 'Expired or invalid token' };
+  }
+};
 
 // const tokenDecode = (authorization: string) => {
 //   const { data } = jwt.decode(authorization);
@@ -25,6 +26,6 @@ const tokenGenerator = (id: number, email: string) => jwt
 
 export default {
   tokenGenerator,
-  // tokenVerify,
+  tokenVerify,
   // tokenDecode,
 };
