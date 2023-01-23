@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import loginService from '../services/login.service';
+// import loginService, { validate } from '../services/login.service';
 
 export default async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -9,3 +10,10 @@ export default async (req: Request, res: Response) => {
   }
   return res.status(200).json({ token: result });
 };
+
+// export const userValidation = async (req: Request, res: Response) => {
+//   const { authorization } = req.headers;
+//   const result = await validate(authorization as string);
+//   if (result === 'User not found') return res.status(401).json({ result });
+//   return res.status(200).json({ role: result });
+// };
