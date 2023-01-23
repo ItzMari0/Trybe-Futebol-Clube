@@ -44,8 +44,13 @@ const createMatch = async (saveMatch: IMatch) => {
   return result;
 };
 
+const updateMatch = async (id: number) => {
+  await Match.update({ inProgress: false }, { where: { id } });
+};
+
 export default {
   getMatches,
   filterMatches,
   createMatch,
+  updateMatch,
 };

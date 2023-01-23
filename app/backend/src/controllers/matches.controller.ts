@@ -18,7 +18,14 @@ const createMatch = async (req: Request, res: Response) => {
   res.status(201).json(result);
 };
 
+const updateMatch = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await matchesService.updateMatch(Number(id));
+  res.status(200).json({ message: 'Finished' });
+};
+
 export default {
   getMatches,
   createMatch,
+  updateMatch,
 };
