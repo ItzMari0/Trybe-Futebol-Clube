@@ -19,6 +19,26 @@ const getMatches = async () => {
   return result;
 };
 
+const filterMatches = async (inProgress: boolean) => {
+  const result = await Match.findAll({
+    include: [
+      {
+        model: team,
+        as: 'homeTeam',
+        attributes: ['teamName'],
+      },
+      {
+        model: team,
+        as: 'awayTeam',
+        attributes: ['teamName'],
+      },
+    ],
+    where: { inProgress },
+  });
+  return result;
+};
+
 export default {
   getMatches,
+  filterMatches,
 };
