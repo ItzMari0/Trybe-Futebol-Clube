@@ -1,3 +1,4 @@
+import IMatch from '../interfaces/IMatch';
 import Match from '../database/models/Match.model';
 import team from '../database/models/Team.model';
 
@@ -38,7 +39,13 @@ const filterMatches = async (inProgress: boolean) => {
   return result;
 };
 
+const createMatch = async (saveMatch: IMatch) => {
+  const result = await Match.create({ ...saveMatch, inProgress: true });
+  return result;
+};
+
 export default {
   getMatches,
   filterMatches,
+  createMatch,
 };

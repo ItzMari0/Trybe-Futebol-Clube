@@ -12,6 +12,13 @@ const getMatches = async (req: Request, res: Response) => {
   return res.status(200).json(result);
 };
 
+const createMatch = async (req: Request, res: Response) => {
+  const saveMatch = req.body;
+  const result = await matchesService.createMatch(saveMatch);
+  res.status(201).json(result);
+};
+
 export default {
   getMatches,
+  createMatch,
 };
