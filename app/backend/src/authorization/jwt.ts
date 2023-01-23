@@ -12,7 +12,6 @@ const tokenGenerator = (id: number, email: string) => jwt
 const tokenVerify = (authorization: string) => {
   try {
     const payload = jwt.verify(authorization, secret);
-    console.log(payload);
     return payload as IToken;
   } catch (error) {
     return { email: 'Expired or invalid token' };
