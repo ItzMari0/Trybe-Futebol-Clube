@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import matchesService from '../services/matches.service';
+import jwt from '../authorization/jwt';
 
 const getMatches = async (req: Request, res: Response) => {
   const { inProgress } = req.query;
@@ -14,6 +15,11 @@ const getMatches = async (req: Request, res: Response) => {
 
 const createMatch = async (req: Request, res: Response) => {
   const saveMatch = req.body;
+  const { authorization } = req.headers;
+  const { email } = await jwt.tokenVerify(authorization as string);
+  if (email === 'Expired or invalid token') {
+    return res.status(401).json({ message: 'Token must be a valid token' });
+  }
   const result = await matchesService.createMatch(saveMatch);
   res.status(201).json(result);
 };
