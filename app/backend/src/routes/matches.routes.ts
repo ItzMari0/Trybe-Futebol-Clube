@@ -7,5 +7,6 @@ const router = Router();
 router.get('/', matchesController.getMatches);
 router.post('/', teamV, matchesController.createMatch);
 router.patch('/:id/finish', matchesController.updateMatch);
+router.patch('/:id', matchesController.updateOngoingMatch);
 
 export default router;

@@ -48,9 +48,14 @@ const updateMatch = async (id: number) => {
   await Match.update({ inProgress: false }, { where: { id } });
 };
 
+const updateOngoingMatch = async (id: number, homeTeamGoals: number, awayTeamGoals: number) => {
+  await Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+};
+
 export default {
   getMatches,
   filterMatches,
   createMatch,
   updateMatch,
+  updateOngoingMatch,
 };

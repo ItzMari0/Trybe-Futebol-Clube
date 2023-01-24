@@ -30,8 +30,16 @@ const updateMatch = async (req: Request, res: Response) => {
   res.status(200).json({ message: 'Finished' });
 };
 
+const updateOngoingMatch = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { homeTeamGoals, awayTeamGoals } = req.body;
+  await matchesService.updateOngoingMatch(Number(id), homeTeamGoals, awayTeamGoals);
+  res.status(200).json({ message: 'updated' });
+};
+
 export default {
   getMatches,
   createMatch,
   updateMatch,
+  updateOngoingMatch,
 };
