@@ -76,7 +76,7 @@ describe('Login endpoint Tests', () => {
       expect(body.message).to.be.equal('Expired or invalid token');
   });
 
-  // teste cobre mas não consegue identificar o token, retornando undefined na message
+  
     it('shows role after validation', async () => {
       const { header } = await chai
       .request(app).post('/login').send(userLogin);
@@ -84,7 +84,7 @@ describe('Login endpoint Tests', () => {
       const { body, status } = await chai
         .request(app).get('/login/validate').set('Authorization', header);
       expect(status).to.be.equal(200);
-      expect(body.message).to.be.equal('user');
+      expect(body.role).to.be.equal('user');
     });
   });
 });
