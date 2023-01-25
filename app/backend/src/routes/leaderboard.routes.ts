@@ -1,9 +1,9 @@
-// import { Router } from 'express';
+import { Router } from 'express';
 
-// import leaderboardController from '../controllers/leaderboard.controller';
+import leaderboardController from '../controllers/leaderboard.controller';
 
-// const router = Router();
+const router = Router();
 
-// router.get('/home', leaderboardController.);
+router.get('/home', leaderboardController.leaderboard);
 
-// export default router;
+export default router;
