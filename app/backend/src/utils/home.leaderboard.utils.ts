@@ -40,7 +40,7 @@ const Defeats = (match: Match, totalLosses: number) => {
   return totalLosses;
 };
 
-const Board = (team: ILeaderboard, match: Match) => {
+const HomeBoard = (team: ILeaderboard, match: Match) => {
   const { homeTeamGoals, awayTeamGoals } = match.dataValues;
   const data = team;
   data.totalPoints = Points(match, data.totalPoints);
@@ -55,12 +55,12 @@ const Board = (team: ILeaderboard, match: Match) => {
   return data;
 };
 
-export function Leaderboard(team: Team, matches: Match[]): ILeaderboard {
+export function HomeLeaderboard(team: Team, matches: Match[]): ILeaderboard {
   const data = JSON.parse(JSON.stringify(teamDetails));
   data.name = team.teamName;
   matches.forEach((match) => {
     const { homeTeamId } = match.dataValues;
-    if (homeTeamId === team.id) return Board(data, match);
+    if (homeTeamId === team.id) return HomeBoard(data, match);
   });
   return data;
 }
